@@ -22,15 +22,17 @@ public class Car implements Comparable<Car> {
     }
 
     public Car(final CarName carName, MoveDistance moveDistance) {
-        this.carName = carName;
-        this.moveDistance = moveDistance;
-        randomNumberHistory = new RandomNumberHistory();
+        this(carName, moveDistance, new RandomNumberHistory());
     }
 
     public Car(Car other) {
-        this.carName = other.carName;
-        this.moveDistance = other.moveDistance;
-        this.randomNumberHistory = other.randomNumberHistory;
+        this(other.carName, other.moveDistance, other.randomNumberHistory);
+    }
+
+    public Car(CarName carName, MoveDistance moveDistance, RandomNumberHistory randomNumberHistory) {
+        this.carName = carName;
+        this.moveDistance = moveDistance;
+        this.randomNumberHistory = randomNumberHistory;
     }
 
     public CarName getCarName() {
@@ -52,8 +54,8 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public boolean isSameMoveDistance(int moveDistance) {
-        return this.getMoveDistance() == moveDistance;
+    public boolean isSameMoveDistance(Car other) {
+        return compareTo(other) == 0;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class CarGroup {
 
     public CarNames findCarNames(Car winningCar) {
         List<CarName> carNames = carGroup.stream()
-            .filter(car -> car.isSameMoveDistance(winningCar.getMoveDistance()))
+            .filter(car -> car.isSameMoveDistance(winningCar))
             .map(Car::getCarName)
             .collect(Collectors.toList());
         return new CarNames(carNames);
